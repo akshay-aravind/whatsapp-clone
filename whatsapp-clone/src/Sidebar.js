@@ -1,18 +1,21 @@
 import React from 'react'
 import './Sidebar.css'
-import { Avatar, IconButton } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import { IconButton } from '@mui/material';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ChatIcon from '@mui/icons-material/Chat';
 import {SearchOutlined} from '@mui/icons-material';
 import SidebarChat from './SidebarChat';
+import { useStateValue } from './StateProvider';
 
-function Sidebar() {
+function Sidebar(messages) {
+  const [{user}] = useStateValue();
+  
   return (
     <div className='sidebar'>
         <div className='sidebar__header'>
-            <Avatar 
-            src='https://www.dailypioneer.com/uploads/2019/story/images/big/irfan-khan-back-in-india-2019-02-13.jpg' />
+            <Avatar src={user?.photoURL} />
             <div className="sidebar__headerRight">
                <IconButton>
                <DonutLargeIcon />
@@ -34,9 +37,7 @@ function Sidebar() {
         </div>
 
     <div className="sidebar__chats">
-        <SidebarChat />
-        <SidebarChat />
-        <SidebarChat />
+        <SidebarChat messages={messages}/>
     </div>
     </div>
   )

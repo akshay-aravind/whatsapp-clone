@@ -4,9 +4,12 @@ import Chat from './Chat';
 import Sidebar from './Sidebar';
 import Pusher from 'pusher-js';
 import axios from './axios';
+import Login from './Login';
+import { useStateValue } from './StateProvider';
 
 function App() {
-  const [messages, setMessages] = useState([])
+  const [{user},dispatch] = useStateValue();
+  const [messages, setMessages] = useState([]);
 
   useEffect(()=> {
    axios.get('/messages/sync').then(response => {
@@ -31,10 +34,14 @@ function App() {
   console.log(messages);
   return (
     <div className="app">
+      {!user ? ( 
+        <Login />
+      ):(
     <div className="app__body">
-     <Sidebar />
+     <Sidebar messages={messages}/>
      <Chat messages={messages}/>
     </div>
+    )}
     </div>
   );
 }

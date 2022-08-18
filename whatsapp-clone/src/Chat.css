@@ -45,8 +45,13 @@
 }
 
 .chat__receiver{
+    position: relative;
     margin-left: auto;
     background-color: #dcf8c6;
+    padding: 10px;
+    width: fit-content;
+    margin-bottom: 30px;
+    font-size: 16px;
 }
 
 .chat__timestamp{

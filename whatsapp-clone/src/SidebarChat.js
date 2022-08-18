@@ -2,13 +2,14 @@ import { Avatar } from '@mui/material'
 import React from 'react'
 import './SidebarChat.css'
 
-function SidebarChat() {
+function SidebarChat( {messages} ) {
+console.log(messages.messages.length);
   return (
     <div className='sidebarChat'>
-        <Avatar />
+        <Avatar src='https://www.patterns.dev/img/reactjs/react-logo@3x.svg'/>
         <div className="sidebarChat__info">
-            <h2>Room Name</h2>
-            <p>This is the last Message</p>
+            <h2>Group React</h2>
+            <p>{messages.messages[messages.messages.length -1]?.message}</p>
         </div>
     </div>
   )
